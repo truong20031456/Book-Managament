@@ -1,0 +1,293 @@
+package QLTK1;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
+
+// Rest of your code...
+
+
+public class TKQL {
+
+	private JFrame frmQunLTi;
+	private JTextField txtname;
+	private JTextField txttk;
+	private JTextField txtmk;
+	private JTextField txtemail;
+	private JTextField txtsdt;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TKQL window = new TKQL();
+					window.frmQunLTi.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	ArrayList<LIST> L = new ArrayList<LIST>();
+	/**
+	 * Create the application.
+	 */
+	public TKQL() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmQunLTi = new JFrame();
+		frmQunLTi.setTitle("Quản Lí Tài khoản");
+		frmQunLTi.setBounds(100, 100, 938, 543);
+		frmQunLTi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmQunLTi.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Quản Lí Tài Khoản Khách Hàng");
+		lblNewLabel.setForeground(new Color(255, 0, 0));
+		lblNewLabel.setBackground(new Color(0, 255, 0));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 24));
+		lblNewLabel.setBounds(0, 10, 924, 60);
+		frmQunLTi.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Tên Khách Hàng");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(42, 94, 116, 25);
+		frmQunLTi.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Tên Đăng Nhập");
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewLabel_1_1.setBounds(42, 129, 116, 25);
+		frmQunLTi.getContentPane().add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Mật Khẩu");
+		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewLabel_1_2.setBounds(42, 164, 116, 25);
+		frmQunLTi.getContentPane().add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("Email");
+		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_3.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewLabel_1_3.setBounds(42, 199, 116, 25);
+		frmQunLTi.getContentPane().add(lblNewLabel_1_3);
+		
+		JLabel lblNewLabel_1_4 = new JLabel("Số Điện Thoại");
+		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_4.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewLabel_1_4.setBounds(42, 234, 116, 25);
+		frmQunLTi.getContentPane().add(lblNewLabel_1_4);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 349, 904, 147);
+		frmQunLTi.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setColumnHeaderView(table);
+		scrollPane.setViewportView(table);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		DefaultTableModel model = new DefaultTableModel();
+		Object [] Column={"Tên Khách Hàng","Tên Đăng Nhập","Mật Khẩu","Email","Số Điện Thoại"
+			
+		};
+		Object[] row = new Object[6];
+		model.setColumnIdentifiers(Column);
+		table.setModel(model);
+		
+		
+		txtname = new JTextField();
+		txtname.setBounds(163, 94, 360, 19);
+		frmQunLTi.getContentPane().add(txtname);
+		txtname.setColumns(10);
+		
+		txttk = new JTextField();
+		txttk.setColumns(10);
+		txttk.setBounds(163, 133, 360, 19);
+		frmQunLTi.getContentPane().add(txttk);
+		
+		txtmk = new JTextField();
+		txtmk.setColumns(10);
+		txtmk.setBounds(163, 170, 360, 19);
+		frmQunLTi.getContentPane().add(txtmk);
+		
+		txtemail = new JTextField();
+		txtemail.setColumns(10);
+		txtemail.setBounds(163, 203, 360, 19);
+		frmQunLTi.getContentPane().add(txtemail);
+		
+		txtsdt = new JTextField();
+		txtsdt.setColumns(10);
+		txtsdt.setBounds(163, 238, 360, 19);
+		frmQunLTi.getContentPane().add(txtsdt);
+		
+		JButton txtsave = new JButton("Lưu");
+		txtsave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 Object[] row = new Object[5];
+			        row[0] = txtname.getText();
+			        row[1] = txttk.getText();
+			        row[2] = txtmk.getText();
+			        row[3] = txtemail.getText();
+			        row[4] = txtsdt.getText();
+			        model.addRow(row);
+			  LIST s = new  LIST(txtname.getText(), txttk.getText(), txtmk.getText(), txtemail.getText(), Integer.parseInt(txtsdt.getText()));
+			        L.add(s);
+			}
+		});
+		txtsave.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		txtsave.setBounds(714, 97, 159, 21);
+		frmQunLTi.getContentPane().add(txtsave);
+		
+		JButton txtdelete = new JButton("Xóa");
+		txtdelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			String xoa = txtname.getText();
+		        if (xoa.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Enter ID!", null, JOptionPane.INFORMATION_MESSAGE);
+		            return; // Thoát khỏi phương thức nếu không có ID được nhập
+		        }
+
+		        DefaultTableModel model = (DefaultTableModel) table.getModel();
+		        boolean found = false;
+
+		        for (int i = 0; i < model.getRowCount(); i++) {
+		            String tableId = model.getValueAt(i, 0).toString();
+		            if (tableId.equals(xoa)) {
+		                model.removeRow(i); // Xóa hàng từ bảng
+		                found = true;
+		                break;
+		            }
+		        }
+
+		        if (!found) {
+		            JOptionPane.showMessageDialog(null, "Không Tìm Thấy Tên!", null, JOptionPane.INFORMATION_MESSAGE);
+		        }
+		    }
+			}
+		 );
+		txtdelete.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		txtdelete.setBounds(714, 132, 159, 21);
+		frmQunLTi.getContentPane().add(txtdelete);
+		
+		JButton txtfile = new JButton("Ghi file");
+		txtfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+		            FileOutputStream fout = new FileOutputStream("taikhoan.txt", true);
+		           for (LIST s : L) {
+		                s.GhiFile(fout);
+		            }
+		            fout.close();
+		            JOptionPane.showMessageDialog(frmQunLTi, "Ghi file thành công!");
+		        } catch (IOException ex) {
+		            JOptionPane.showMessageDialog(frmQunLTi, "Lỗi khi ghi file!");
+		        }
+			}
+		});
+		txtfile.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		txtfile.setBounds(714, 167, 159, 21);
+		frmQunLTi.getContentPane().add(txtfile);
+		
+		JButton txtsearch = new JButton("Tìm Kiếm");
+		txtsearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = txtname.getText();
+				if(name.compareTo("")==0) {
+					JOptionPane.showMessageDialog(null,"Bạn chưa nhập tên" , null, JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					model.setDataVector(null, Column);
+					for (LIST s :L) {
+						if (name.compareToIgnoreCase(s.name)==0) {
+							row[0]=s.name;
+							row[1]=s.tk;
+							row[2]=s.mk;
+							row[3]=s.email;
+							row[4]=s.sdt;
+							model.addRow(row);
+						}
+					}
+				}
+			}
+				
+			
+		});
+		txtsearch.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		txtsearch.setBounds(714, 202, 159, 21);
+		frmQunLTi.getContentPane().add(txtsearch);
+		
+		JButton txtadd = new JButton("Thêm");
+		txtadd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {txtname.setText("");
+			txttk.setText("");
+			txtmk.setText("");
+			txtemail.setText("");
+			txtsdt.setText("");	
+			}
+		});
+		txtadd.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		txtadd.setBounds(714, 237, 159, 21);
+		frmQunLTi.getContentPane().add(txtadd);
+		
+		JButton btnTiLn = new JButton("Tải Lên");
+		btnTiLn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					FileInputStream fin = new FileInputStream("taikhoan.txt");
+					InputStreamReader isr = new InputStreamReader(fin);
+					BufferedReader br = new BufferedReader(isr);
+					String line;
+					while ((line = br.readLine()) != null) {
+						String[] words = line.split(", ");
+						Object[] row = new Object[4];
+						row[0] = words[0];
+						row[1] = words[1];
+						row[2] = words[2];
+						row[3] = words[3];
+						row[4] = words[4];
+						model.addRow(row);
+		LIST  s = new LIST (words[0], words[1], words[2],words[3], Integer.parseInt(words[4]));
+					}
+					br.close();
+				} catch (Exception ex) {
+					System.out.println("Error File: " + ex);
+				}
+				
+			}
+		});
+		btnTiLn.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		btnTiLn.setBounds(714, 268, 159, 21);
+		frmQunLTi.getContentPane().add(btnTiLn);
+		
+		
+	
+	}
+}
